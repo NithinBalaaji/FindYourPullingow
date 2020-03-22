@@ -1,0 +1,39 @@
+{% extends "groups/group_base.html" %}
+{% block pregroup %}
+<div class="col"> 
+  <div class="content">
+      
+      {% if user.is_authenticated %}
+      <h2>Welcome Back!</h2>
+      <br>
+      <a href="{% url 'groups-create'%}" class="btn btn-lg btn-fill btn-warning"><span class="glyphicon glyphicon-plus-sign"></span>Create a Group</a>
+          
+        {% endif %}
+  </div>
+  <br>
+
+  {% endblock pregroup %}
+
+  {% block group_content %}
+    <div class="col-6">
+        {% for group in groups %}
+        <a class="list-group-item" href=" {% url 'single-group' group.id %}">
+            <h3 class="title list-group-item-heading">{{ group.name }}</h3>
+            <div class="list-group-item-text container-fluid">
+                {{group.description|safe}}
+                <div class="row">
+                    <button type="button" class="btn btn-primary">
+                        Member{{group.members.count|pluralize}} <span class="badge badge-light">{{ group.members.count }} </span>
+                      </button>
+                      <button type="button" class="btn btn-success">
+                        Event{{group.events.count|pluralize}} <span class="badge badge-light">{{ group.events.count }} 0</span>
+                      </button>                      
+                   
+                </div>
+            </div>
+        </a>
+          
+        {% endfor %}
+    </div>
+  </div>
+  {% endblock group_content %}

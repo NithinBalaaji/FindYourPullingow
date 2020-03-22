@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'captcha',
     'crispy_forms',
-    'events'
+    'events',
+    'groups'
 ]
 
 MIDDLEWARE = [

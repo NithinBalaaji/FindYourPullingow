@@ -16,7 +16,7 @@ class EventCreationForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = ['event_name', 'content', 'date_event', 'time_event']
+        fields = ['event_name', 'content', 'date_event', 'time_event','group']
         widgets = {
             'date_event': DateInput(),
             'time_event': TimeInput

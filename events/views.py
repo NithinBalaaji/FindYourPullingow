@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from braces.views import SelectRelatedMixin
+
 from django.views.generic import (
     ListView,
     DetailView,
@@ -13,16 +15,19 @@ from .forms import EventCreationForm
 
 
 
-class EventListView(ListView):
+class EventListView(SelectRelatedMixin,ListView):
     model = Event
+    select_related = ('author','group')
     template_name ='events/home.html'
     context_object_name = 'events'
     paginate_by = 2
+    
 
 class UserEventListView(ListView):
     model = Event
     template_name ='events/user_posts.html'
     context_object_name = 'events'
+    
     paginate_by = 2
 
     def get_query_set(self):
