@@ -1,0 +1,4 @@
+django-crispy-forms==1.9
+django-forms-bootstrap==3
+django-simple-captcha
+Django==3.4.1
